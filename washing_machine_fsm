@@ -1,0 +1,29 @@
+module washing_machine_fsm(
+    input clk,
+    input rst,
+    input button,
+    output reg [6:0] led
+    );
+    
+    reg old = 0;
+    wire step = button & ~old;
+    always @(posedge clk) begin
+       old <= button;
+ 
+       if (rst)
+           led <= 7'b0000001;                  // back to Idle
+       else if (step) begin
+           case (led)
+               7'b0000001: led <= 7'b0000010;  
+               7'b0000010: led <= 7'b0000100;  
+               7'b0000100: led <= 7'b0001000;  
+               7'b0001000: led <= 7'b0010000;  
+               7'b0010000: led <= 7'b0100000;  
+               7'b0100000: led <= 7'b1000000;  
+               7'b1000000: led <= 7'b0000001;  
+               default:    led <= 7'b0000001;
+           endcase
+       end
+   end
+    
+endmodule
