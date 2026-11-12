@@ -14,7 +14,7 @@ module washing_machine_top(
         .debounced_button(clean_button)
     );
  
-    washing_fsm u_fsm (
+    washing_machine_fsm u_fsm (
         .clk(CLK100MHZ),
         .rst(rst),
         .button(clean_button),
