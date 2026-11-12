@@ -1,0 +1,23 @@
+module washing_machine_top(
+    input        CLK100MHZ,
+    input        CPU_RESETN,
+    input        BTNC,
+    output [6:0] LED
+);
+    wire rst = ~CPU_RESETN;     
+    wire clean_button;
+ 
+    debouncer u_debouncer (
+        .clk(CLK100MHZ),
+        .rst(rst),
+        .button(BTNC),
+        .debounced_button(clean_button)
+    );
+ 
+    washing_fsm u_fsm (
+        .clk(CLK100MHZ),
+        .rst(rst),
+        .button(clean_button),
+        .led(LED)
+    );
+endmodule
