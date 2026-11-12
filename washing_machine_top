@@ -2,6 +2,7 @@ module washing_machine_top(
     input        CLK100MHZ,
     input        CPU_RESETN,
     input        BTNC,
+    input        mode,
     output [6:0] LED
 );
     wire rst = ~CPU_RESETN;     
@@ -18,6 +19,7 @@ module washing_machine_top(
         .clk(CLK100MHZ),
         .rst(rst),
         .button(clean_button),
-        .led(LED)
+        .led(LED),
+        .mode(mode)
     );
 endmodule
