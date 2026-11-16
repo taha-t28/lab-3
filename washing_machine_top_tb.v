@@ -9,7 +9,8 @@ module washing_machine_top_tb;
         .CLK100MHZ(CLK100MHZ),
         .CPU_RESETN(CPU_RESETN),
         .BTNC(BTNC),
-        .LED(LED)
+        .LED(LED),
+        .mode(mode)
     );
 
     initial CLK100MHZ = 0;
@@ -17,7 +18,7 @@ module washing_machine_top_tb;
 
     initial begin
 
-        CPU_RESETN = 0; BTNC = 0;
+        CPU_RESETN = 0; BTNC = 0; mode = 1;
         #20 CPU_RESETN = 1;
 
         for (i = 0; i < 8; i = i + 1) begin
