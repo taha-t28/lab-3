@@ -9,6 +9,7 @@ module washing_machine_fsm_tb;
         .clk(clk),
         .rst(rst),
         .button(button),
+        .mode(mode),
         .led(led)
     );
 
@@ -17,8 +18,9 @@ module washing_machine_fsm_tb;
 
     initial begin
 
-        rst = 1; button = 0;
+        rst = 1; button = 0; mode = 1;
         #20 rst = 0;
+        
 
         for (i = 0; i < 8; i = i + 1) begin
             #20 button = 1;
